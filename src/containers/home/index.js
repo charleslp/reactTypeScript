@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getLoginInfo, getStatus } from '../store/actions';
+import { getLoginInfo, getStatus } from '../../store/actions';
 import { withRouter } from 'react-router-dom';
+import "./index.less";
+import { Button } from 'antd';
+
 // import { Hello } from "../components/Hello.tsx";
 
 const userInfo = {
@@ -28,11 +31,12 @@ class Home extends React.Component{
   }
   render(){
     const {userInfo} = this.props;
-    return <div>
+    return (<div className="home-container">
       <p>Home 页面 {userInfo.say}</p>
+      <Button type="primary">Button</Button>
       {/* <Hello compiler="TypeScript" framework="React" />, */}
       <div onClick={this.goDetail.bind(this)}>跳转到详情页面</div>
-    </div>
+    </div>)
   }
 }
 const mapStateToProps = (state) => ({

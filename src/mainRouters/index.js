@@ -3,8 +3,8 @@ import {Route, Switch, Redirect,BrowserRouter,HashRouter} from 'react-router-dom
 import App from '../App';
 import Home from '../containers/home/index.js';
 import Detail from '../containers/detail';
-import List from '../containers/list';
 import Loadable from "react-loadable";
+import List from '../containers/list';
 import DefaultLayout from "../layouts/layout";
 const loading = (errer)=>{
  if(errer){
@@ -13,11 +13,10 @@ const loading = (errer)=>{
    return null
  }
 }
-const Root = () => (
+const MainRoot = () => (
   // eslint-disable-next-line no-unused-expressions
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Home} />
       <Route path="/home" exact render={routeProps =>
               createElement(Loadable({
                 loader: () =>
@@ -27,14 +26,8 @@ const Root = () => (
             }/>
       <Route path="/detail" component={Detail} />
       <Route path="/list" component={List} />
-      <Route render={() => <Redirect to="/" />} />
-      <Route
-            path="/"
-            render={() =>
-              createElement(DefaultLayout)
-            }
-          />
+      <Route path="/" exact component={Home} />
     </Switch>
   </BrowserRouter>
 );
-export default Root;
+export default MainRoot;
