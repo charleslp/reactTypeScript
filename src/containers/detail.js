@@ -24,11 +24,13 @@ class Detail extends React.Component{
     this.props.history.push('/list')
   }
   render(){
+    const path = this.props.location.pathname;
+  console.log(this.props,'最新的路由')
     const {name,say,like,stauts,id} = this.state;
     console.log(this.props,'---props---');
     return (
       <div>
-        <div>详情页面</div>
+        <div>详情页面{path}</div>
         <div>{name}</div>
         <div>{say}</div>
         <div>{like}</div>

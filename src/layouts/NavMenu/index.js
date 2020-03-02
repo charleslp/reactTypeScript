@@ -9,26 +9,28 @@ import './index.less';
 const navs = [
     {
         name:'用户管理',
+        key:'1',
         children:[
             {
                 name:'用户详情',
                 link:'/detail'
             },
             {
-                name:'积分明细',
-                link:'/detail'
+              name:'用户信息',
+              link:'/home'
+            },
+            {
+              name:'用户列表',
+              link:'/userlist'
             }
         ]
     },
     {
-        name:'线上诊疗',
+        name:'师傅订单',
+        key:'2',
         children:[
             {
                 name:'商品管理',
-                link:'/list'
-            },
-            {
-                name:'商城订单',
                 link:'/list'
             }
         ]
@@ -38,19 +40,48 @@ class NavMenu extends React.Component{
     constructor(props){
         super(props)
         this.state={
-
+          openFirstMenu:[],
+          openSecondMenu:[],
         }
+    }
+    componentDidMount() {
+      console.log(this.props.location.pathname,'路由信息')
+      const path = this.props.location.pathname;
+      navs.forEach(element => {
+        element.children.forEach(item=>{
+          if(item.link == path){
+            this.setState({openFirstMenu:[element.key]},()=>{
+              // console.log(this.state.list,'---current')
+            })
+          }
+        })
+      });
+      
+    }
+    menuHandleClick = (item) => {
+      console.log(item,'item--')
+      this.setState({openFirstMenu:item})
     }
 render(){
     const clientHeight = document.documentElement.clientHeight;
+    const {openFirstMenu, openSecondMenu} = this.state;
+    console.log(openFirstMenu,'导航数据')
+    const path = this.props.location.pathname;
+    console.log(this.props,'this.props.location.pathname')
   return (
     <div className='nav-menu-container' style={{height: `${clientHeight}px`}}>
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+      <Menu theme="dark" 
+        // defaultOpenKeys={['师傅订单']}
+        // defaultSelectedKeys={['/list']}
+        mode="inline"
+        onOpenChange={this.menuHandleClick}
+        openKeys={openFirstMenu}
+        selectedKeys={[path]}>
         
       { Array.isArray(navs) &&navs.map((item,index) => {
               return (
                 <SubMenu
-                  key={index}
+                  key={item.key}
                   title={
                     <span>
                       <Icon type="mail" />
@@ -61,10 +92,10 @@ render(){
                   { Array.isArray(item.children) &&
                     item.children.map(subChild => {
                         return (
-                          <Menu.Item key={subChild.name}>
-                          <a
-                            href={subChild.link}
-                          >{subChild.name}</a>
+                          <Menu.Item key={subChild.link}>
+                          <Link
+                            to={subChild.link}
+                          >{subChild.name}</Link>
                           </Menu.Item>
                         )
                     })
@@ -76,4 +107,5 @@ render(){
     </div>
   )};
 }
-export default NavMenu;
+export default withRouter(NavMenu);
+// export default NavMenu;

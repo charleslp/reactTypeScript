@@ -7,7 +7,9 @@ class Layout extends Component {
   render() {
     return (
       <div className="global-layout-container">
-        <div className="global-layout-top">面包屑导航</div>
+        <div className="global-layout-top">
+          <SubHead/>
+        </div>
         <div className="global-layout-botttom">
             <div className="global-layout-menu">
              <NavMenu />
