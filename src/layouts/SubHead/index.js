@@ -77,8 +77,8 @@ render(){
   return (
     <div className='breadcrumb-box'>
       <Breadcrumb>
-      {this.state.list.length>1 && this.state.list.map((item)=>{
-          return (<Breadcrumb.Item href="">
+      {this.state.list.length>1 && this.state.list.map((item,index)=>{
+          return (<Breadcrumb.Item href="" key={index}>
             <span>{item}</span>
           </Breadcrumb.Item>)
         })}
