@@ -69,7 +69,67 @@ const MainRoot = () => (
         )
       }
     />
+    <Route
+      path="/userDetail"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "userDetail" */ '../containers/userManage/userDetail/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
 
+    <Route
+      path="/integralList"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "integralList" */ '../containers/userManage/integralList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/balanceList"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "balanceList" */ '../containers/userManage/balanceList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/integralRatio"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "integralRatio" */ '../containers/integralManage/integralRatio/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
     <Route
       path="/home"
       exact

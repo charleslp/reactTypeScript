@@ -87,6 +87,14 @@ class UserList extends React.Component {
     let s = (date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds())
     return Y+M+D+h+m+s;
   }
+  checkDetail = (e) => {
+    const id = e.target.getAttribute('data-userid');
+    this.props.history.push('/userDetail', { id: id })
+  }
+  checkNtegral = (e) => {
+    const id = e.target.getAttribute('data-userid');
+    this.props.history.push('/userDetail', { id: id })
+  }
   
   render() {
     const { userInfo } = this.props;
@@ -134,9 +142,9 @@ class UserList extends React.Component {
               <td className='max-width'>{item.registerTime}</td>
               {/* <td className={`${item.status == 1? 'able-status':'disable-status'} `}>{item.status ==1 ? "正常":"停用"}</td> */}
               <td className='operate-container'>
-                <span data-storeid={item.id} data-storeContext={item.name} onClick={this.editStoreFun} className='edit-store'>查看详情</span>
+                <span data-userid={item.id} onClick={this.checkDetail} className='edit-store'>查看详情</span><br />
                 {/* <span data-roleid={item.id} onClick={this.operateStoreHandle} className='operate-store'>启用</span> */}
-                <span data-storeid={item.id} onClick={this.deleteStoreFun} className='delete-store'>积分明细</span>
+                <span data-userid={item.id} onClick={this.checkNtegral} className='delete-store'>积分明细</span>
               </td>
             </tr>
           ))

@@ -20,16 +20,32 @@ const navs = [
           {
             name:'用户列表',
             link:'/userlist'
+          },
+          {
+            name:'用户详情',
+            link:'/userDetail'
+          },
+          {
+            name:'积分明细',
+            link:'/integralList'
+          },
+          {
+            name:'余额明细',
+            link:'/balanceList'
           }
       ]
   },
   {
-      name:'师傅订单',
+      name:'积分管理',
       children:[
-          {
-              name:'商品管理',
-              link:'/list'
-          },
+        {
+          name:'积分比例设置',
+          link:'/integralRatio'
+        },
+        {
+          name:'积分说明设置',
+          link:'/integralExplain'
+        }
       ]
   }
 ]

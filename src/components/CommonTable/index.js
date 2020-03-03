@@ -1,9 +1,3 @@
-/* * @Author: zhangbh
-   * @Date: 2019-06-28 16:53:15
-   * @Last Modified by: zhangbh
-   * @Last Modified time: 2019-06-28 16:53:46
-   * */
-
   import React from 'react';
   import RenderPagination from '../RenderPagination';
   import PropTypes from 'prop-types';
@@ -16,7 +10,7 @@
     };
     return (
       <div>
-        <table className='common-table-container'>
+        <table className='common-table-container user-list-table'>
           <thead className='common-table-head'>
             <tr>
               {props.head.map((item, key) => (
