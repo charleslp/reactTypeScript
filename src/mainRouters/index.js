@@ -131,6 +131,21 @@ const MainRoot = () => (
       }
     />
     <Route
+      path="/integralExplain"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "integralExplain" */ '../containers/integralManage/integralExplain/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
       path="/home"
       exact
       render={routeProps =>
