@@ -4,6 +4,8 @@ import { getLoginInfo, getStatus } from '../../store/actions';
 import { withRouter } from 'react-router-dom';
 import "./index.less";
 import { message } from 'antd';
+import {login} from '../../service/index'
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 // import { Hello } from "../components/Hello.tsx";
 @withRouter
@@ -58,8 +60,19 @@ class Login extends React.Component {
     this.props.history.push('/detail', { id: 123456 })
   }
   loginFn = () => {
-    message.info('用户名错误');
-    this.props.history.push('/home', { id: 123456 })
+    login({account:this.state.userName,password:this.state.password})
+      .then(res => {
+        console.log(res,'---res')
+        const {data} = res
+        if (+data.status == 1) {
+          this.props.history.push('/userlist')
+        } else {
+          message.error(data.msg);
+        }
+      })
+      .catch(err => {
+        message.error("服务器出错了!!!");
+      })
   }
   render() {
     const { userInfo } = this.props;

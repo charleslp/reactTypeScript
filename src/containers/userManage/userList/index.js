@@ -68,7 +68,7 @@ class UserList extends React.Component {
     message.config({
       top: 300,
     });
-    getMenuList({isPaging:1,pageNum:this.state.pageNum,pageSize:10})
+    getMenuList({page_index:1,page_size:10})
       .then(res => {
         const {data} = res
         if (+data.status == 1) {

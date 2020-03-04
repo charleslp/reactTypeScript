@@ -236,6 +236,21 @@ const MainRoot = () => (
       }
     />
     <Route
+      path="/operateRecord"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "operateRecord" */ '../containers/limitsManage/operateRecord/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
       path="/home"
       exact
       render={routeProps =>

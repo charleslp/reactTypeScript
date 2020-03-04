@@ -10,4 +10,44 @@
     color: #00b5d9;
     cursor: pointer;
   }
+  .panle-box{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.4);
+    .panle-container{
+      position: relative;
+      width: 530px;
+      padding: 30px 30px;
+      background: #fff;
+      margin: 0 auto;
+      margin-top: 10px;
+      border-radius: 8px;
+      .input-style{
+        display: inline-block;
+        width: 200px;
+        height: 30px;
+      }
+      .input-spc{transform: translateY(-20px);}
+      .font-style,.font-right{
+        font-size: 14px;
+        color: #000;
+        font-weight: 300;
+      }
+      .font-right{
+        margin-right: 60px;
+        span{
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+      .font-top{
+        margin-top: 10px;
+      }
+    }
+  }
 }

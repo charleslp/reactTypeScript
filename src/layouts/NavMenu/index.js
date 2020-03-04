@@ -64,7 +64,12 @@ const navs = [
             {
               name:'管理员列表',
               link:'/managelist'
-            }
+            },
+            {
+              name:'操作日志',
+              link:'/operateRecord'
+            },
+            
         ]
     }
 ]

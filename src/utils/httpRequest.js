@@ -5,7 +5,7 @@ import { isPlainObject } from "lodash/lang";
 const instance = axios.create({
   baseURL: 'https://zy-api.gymooit.cn/v1/cms/',
   timeout: 15000,
-  withCredentials: true,
+  withCredentials: false,
   transformRequest: [
     (data) => {
       // 对 data 进行任意转换处理

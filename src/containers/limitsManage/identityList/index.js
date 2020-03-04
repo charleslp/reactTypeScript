@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import "./index.less";
 import CommonTable from '../../../components/CommonTable';
 import React, { useState } from 'react';
-import { Tree, Button } from 'antd';
+import { Tree, Button, Input } from 'antd';
 const treeData = [
   {
     title: '权限管理',
@@ -43,11 +43,11 @@ class IdentityList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      goodsName:'', //商品名称
       autoExpandParent:true,
       expandedKeys:[],
       checkedKeys:[],
       selectedKeys:[],
+      identityName:'',
     }
   }
 
@@ -76,17 +76,6 @@ class IdentityList extends React.Component {
     return (
       <div className="identity-list-container">
         <Button type="primary" onClick={this.addIdentity} >新建身份</Button>
-        <Tree
-        checkable
-        onExpand={this.onExpand}
-        expandedKeys={this.state.expandedKeys}
-        autoExpandParent={this.state.autoExpandParent}
-        onCheck={this.onCheck}
-        checkedKeys={this.state.checkedKeys}
-        onSelect={this.onSelect}
-        selectedKeys={this.state.selectedKeys}
-        treeData={treeData}
-      />
         <div style={{marginTop:'36px'}}>
           {identityData.length > 0 && <CommonTable
             head={tableHead}
@@ -105,6 +94,30 @@ class IdentityList extends React.Component {
           // total={total}
           // onChange={this.nextPageHandle}
           />}
+        </div>
+        <div className="panle-box">
+          <div className="panle-container">
+            <p style={{fontSize:'16px',fontWeight:900}}>编辑/添加身份</p>
+            <div className="font-top">
+              <label className='font-right' style={{ marginRight: '96px' }}> 身份名称</label><Input className="input-style" placeholder="
+请输入管理员姓名" onClick={(e) => { this.setState({ identityName: e.target.value }) }} />
+            </div>
+            <Tree
+              checkable
+              onExpand={this.onExpand}
+              expandedKeys={this.state.expandedKeys}
+              autoExpandParent={this.state.autoExpandParent}
+              onCheck={this.onCheck}
+              checkedKeys={this.state.checkedKeys}
+              onSelect={this.onSelect}
+              selectedKeys={this.state.selectedKeys}
+              treeData={treeData}
+            />
+            <div className="font-top">
+              <Button type="primary" onClick={this.submitIdentity} >确定</Button>
+              <Button style={{marginLeft:'16px'}} onClick={this.cancalIdentity} >取消</Button>
+            </div>
+          </div>
         </div>
       </div>)
   }

@@ -65,7 +65,12 @@ const navs = [
         {
           name:'身份管理',
           link:'/identitylist'
-        }
+        },
+        {
+          name:'操作日志',
+          link:'/operateRecord'
+        },
+        
       ]
   }
 ]

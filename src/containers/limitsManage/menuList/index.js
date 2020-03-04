@@ -4,34 +4,8 @@ import { withRouter } from 'react-router-dom';
 import "./index.less";
 import CommonTable from '../../../components/CommonTable';
 import React, { useState } from 'react';
-import { Tree, Button } from 'antd';
-const treeData = [
-  {
-    title: '权限管理',
-    key: '1',
-    children: [
-      {
-        title: '管理员列表',
-        key: '0-1',
-        children: [
-          { title: '超级', key: '0-1-0' },
-          { title: '中级', key: '0-1-1' },
-          { title: '普通', key: '0-1-2' },
-        ],
-      },
-      {
-        title: '身份管理',
-        key: '0-2',
-        children: [
-          { title: '查看', key: '0-2-0' },
-          { title: '修改', key: '0-2-1' },
-          { title: '添加', key: '0-2-2' },
-          { title: '删除', key: '0-2-3' },
-        ],
-      }
-    ],
-  },
-];
+import { Tree, Button, Input, Select  } from 'antd';
+const { Option } = Select;
 const goodsData = [
   {
     name:'菜单名称',
@@ -45,30 +19,21 @@ class MenuList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      goodsName:'', //商品名称
-      autoExpandParent:true,
-      expandedKeys:[],
-      checkedKeys:[],
-      selectedKeys:[],
+      rank:'', 
+      parent:'',
+      menuUrl:'',
+      menuName:'',
     }
   }
 
   componentDidMount() {
     
   }
-  onExpand = (expandedKeys) => {
-    this.setState({expandedKeys:expandedKeys,autoExpandParent:false})
+  changeRank = (value) => {
+    this.setState({rank:value})
   }
-  onCheck = (checkedKeys) => {
-    console.log(checkedKeys,'checkedKeys----');
-    this.setState({checkedKeys:checkedKeys})
-  }
-  onSelect = (selectedKeys) => {
-    console.log(selectedKeys,'selectedKeys是多少----');
-    this.setState({selectedKeys:selectedKeys})
-  }
-  addGoods=()=>{
-    this.props.push('/addGoods')
+  changeParent = (value) => {
+    this.setState({parent:value})
   }
   
   render() {
@@ -78,17 +43,6 @@ class MenuList extends React.Component {
     return (
       <div className="menu-list-container">
         <Button type="primary" onClick={this.addMenu} >添加菜单</Button>
-        <Tree
-        checkable
-        onExpand={this.onExpand}
-        expandedKeys={this.state.expandedKeys}
-        autoExpandParent={this.state.autoExpandParent}
-        onCheck={this.onCheck}
-        checkedKeys={this.state.checkedKeys}
-        onSelect={this.onSelect}
-        selectedKeys={this.state.selectedKeys}
-        treeData={treeData}
-      />
         <div style={{marginTop:'36px'}}>
           {goodsData.length > 0 && <CommonTable
             head={tableHead}
@@ -109,6 +63,46 @@ class MenuList extends React.Component {
           // total={total}
           // onChange={this.nextPageHandle}
           />}
+        </div>
+        <div className="panle-box">
+          <div className="panle-container">
+            <p style={{fontSize:'16px',fontWeight:900}}>编辑/添加菜单</p>
+            <div className="font-top">
+              <label className='font-right' style={{ marginRight: '96px' }}> 菜单名称</label><Input className="input-style" placeholder="
+请输入管理员姓名" onClick={(e) => { this.setState({ menuName: e.target.value }) }} />
+            </div>
+            <div className="font-top">
+              <label className='font-right' style={{ marginRight: '108px' }}> 菜单url</label><Input className="input-style" placeholder="请输入联系方式" onClick={(e) => { this.setState({ menuUrl: e.target.value }) }} />
+            </div>
+            <div className="font-top">
+              <label className='font-right' style={{ marginRight: '96px' }}> 菜单等级</label>
+              <Select
+                style={{ width: 300 }}
+                placeholder="请选择菜单等级"
+                onChange={this.changeRank}          
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="tom">Tom</Option>
+              </Select>
+            </div>
+            <div className="font-top">
+              <label className='font-right' style={{ marginRight: '96px' }}> 上级菜单</label>
+              <Select
+                style={{ width: 300 }}
+                placeholder="请选择上级菜单"
+                onChange={this.changeParent}          
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="tom">Tom</Option>
+              </Select>
+            </div>
+            <div className="font-top">
+              <Button type="primary" onClick={this.submitMenu} >确定</Button>
+              <Button style={{marginLeft:'16px'}} onClick={this.cancalMenu} >取消</Button>
+            </div>
+          </div>
         </div>
       </div>)
   }
