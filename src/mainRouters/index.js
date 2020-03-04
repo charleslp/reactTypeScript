@@ -146,6 +146,96 @@ const MainRoot = () => (
       }
     />
     <Route
+      path="/productList"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "productList" */ '../containers/product/productList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/addGoods"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "addGoods" */ '../containers/product/addGoods/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/evaluate"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "evaluate" */ '../containers/product/evaluate/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/menulist"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "menulist" */ '../containers/limitsManage/menuList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/identitylist"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "identitylist" */ '../containers/limitsManage/identityList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/managelist"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "managelist" */ '../containers/limitsManage/manageList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
       path="/home"
       exact
       render={routeProps =>

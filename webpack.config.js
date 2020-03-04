@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //自动创建html文件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //清除多余文件
 
+const resolve = function (dir) {
+  return path.join(__dirname, '..', dir)
+};
 module.exports = {
   devtool:'cheap-mudule-eval-source-map',// 用于开发调试，方便清楚那个文件出错
   entry:{
@@ -75,5 +78,12 @@ module.exports = {
 				NODE_APIENV: JSON.stringify(process.env.NODE_APIENV || 'development'),
 			},
 		}),
-  ]
+  ],
+  resolve: {
+    alias: {
+      '@Service': resolve('src/service/index')
+    },
+    extensions: [".js", ".jsx", ".json"]
+  },
+
 }

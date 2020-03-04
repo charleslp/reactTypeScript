@@ -48,6 +48,22 @@ const navs = [
             {
               name:'积分说明设置',
               link:'/integralExplain'
+            },
+            {
+              name:'商品列表',
+              link:'/productList'
+            },
+            {
+              name:'菜单管理',
+              link:'/menulist'
+            },
+            {
+              name:'身份管理',
+              link:'/identitylist'
+            },
+            {
+              name:'管理员列表',
+              link:'/managelist'
             }
         ]
     }

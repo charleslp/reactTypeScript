@@ -6,6 +6,8 @@ import "./index.less";
 import { message } from 'antd';
 import { Input, Button, Select   } from 'antd';
 import CommonTable from '../../../components/CommonTable';
+import { getMenuList } from "../../../service/index"
+
 
 const data = [
   {
@@ -66,6 +68,18 @@ class UserList extends React.Component {
     message.config({
       top: 300,
     });
+    getMenuList({isPaging:1,pageNum:this.state.pageNum,pageSize:10})
+      .then(res => {
+        const {data} = res
+        if (+data.status == 1) {
+          this.setState({storeOriginList:data.data.list,total:data.data.total})
+        } else {
+          errorTip(data.msg);
+        }
+      })
+      .catch(err => {
+        errorTip("服务器出错了!!!");
+      })
   }
   ChangeWord = (event) => {
     console.log(111)
