@@ -7,11 +7,6 @@ import { Button } from 'antd';
 
 // import { Hello } from "../components/Hello.tsx";
 
-const userInfo = {
-  name:'bill snow',
-  say:'hello world,bill',
-  like:'music'
-}
 @withRouter
 class Home extends React.Component{
   constructor(props){
@@ -22,8 +17,8 @@ class Home extends React.Component{
   }
   componentDidMount() {
     console.log(process.env.NODE_ENV,'NODE_ENV');
-    const {fetchUserInfo} = this.props;
-    fetchUserInfo(userInfo)
+    // const {fetchUserInfo} = this.props;
+    // fetchUserInfo(userInfo)
   }
   goDetail(){
     console.log(this.props,'this.props====');

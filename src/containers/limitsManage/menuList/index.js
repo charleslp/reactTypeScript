@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 import "./index.less";
 import CommonTable from '../../../components/CommonTable';
 import React, { useState } from 'react';
-import { Tree, Button, Input, Select  } from 'antd';
+import { Tree, Button, Input, Select, message} from 'antd';
+import { getMenuList } from "../../../service/index"
+
 const { Option } = Select;
 const goodsData = [
   {
@@ -23,11 +25,36 @@ class MenuList extends React.Component {
       parent:'',
       menuUrl:'',
       menuName:'',
+      showAdd:false,
+      menuList:[], // 菜单合集
     }
   }
 
   componentDidMount() {
-    
+    getMenuList({page_index:1,page_size:10})
+      .then(res => {
+        const {data} = res
+        const list  = Object.values(data.result)
+        console.log(list,'--list')
+        let MenuArr = [];
+        list.forEach((item)=>{
+          item.forEach((value)=>{
+            MenuArr.push({
+              id: value.id,
+              menu_name: value.menu_name,
+              menu_url: value.menu_url,
+              create_time: value.create_time,
+              fid: value.fid,
+              type: value.type,
+            })
+          })
+        })
+        console.log(MenuArr,'菜单信息');
+        this.setState({menuList:MenuArr})
+      })
+      .catch(err => {
+        message.error("服务器出错了!!!");
+      })
   }
   changeRank = (value) => {
     this.setState({rank:value})
@@ -38,23 +65,23 @@ class MenuList extends React.Component {
   
   render() {
     const { userInfo } = this.props;
-    const { isFetching } = this.state;
+    const { isFetching,menuList } = this.state;
     const tableHead = ['菜单名称', '菜单url', '菜单等级', '上级菜单', '操作'];
     return (
       <div className="menu-list-container">
         <Button type="primary" onClick={this.addMenu} >添加菜单</Button>
         <div style={{marginTop:'36px'}}>
-          {goodsData.length > 0 && <CommonTable
+          {menuList.length > 0 && <CommonTable
             head={tableHead}
-            body={goodsData.map((item,index) => (
+            body={menuList.map((item,index) => (
               <tr key={index}>
-                <td className='max-width'>{item.name}</td>
-                <td className='max-width'>{item.url}</td>
-                <td className='max-width'>{item.rank}</td>
-                <td className='max-width'>{item.parentMenu}</td>
+                <td className='max-width'>{item.menu_name}</td>
+                <td className='max-width'>{item.menu_url}</td>
+                <td className='max-width'>{item.type}</td>
+                <td className='max-width'>{item.fid}</td>
                 <td className='operate-container'>
-                    <span data-goodid={item.index} onClick={this.editMenu} className='delete-store'>编辑</span><br />
-                    <span data-goodid={item.index} onClick={this.cancelMenu} className='delete-store'>删除</span><br />
+                    <span data-menuid={item.id} onClick={this.editMenu} className='delete-store'>编辑</span><br />
+                    <span data-menuid={item.index} onClick={this.cancelMenu} className='delete-store'>删除</span><br />
                   </td>
               </tr>
             ))
@@ -64,7 +91,7 @@ class MenuList extends React.Component {
           // onChange={this.nextPageHandle}
           />}
         </div>
-        <div className="panle-box">
+        {this.state.showAdd && <div className="panle-box">
           <div className="panle-container">
             <p style={{fontSize:'16px',fontWeight:900}}>编辑/添加菜单</p>
             <div className="font-top">
@@ -103,7 +130,7 @@ class MenuList extends React.Component {
               <Button style={{marginLeft:'16px'}} onClick={this.cancalMenu} >取消</Button>
             </div>
           </div>
-        </div>
+        </div>}
       </div>)
   }
 }

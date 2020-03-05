@@ -68,18 +68,6 @@ class UserList extends React.Component {
     message.config({
       top: 300,
     });
-    getMenuList({page_index:1,page_size:10})
-      .then(res => {
-        const {data} = res
-        if (+data.status == 1) {
-          this.setState({storeOriginList:data.data.list,total:data.data.total})
-        } else {
-          errorTip(data.msg);
-        }
-      })
-      .catch(err => {
-        errorTip("服务器出错了!!!");
-      })
   }
   ChangeWord = (event) => {
     console.log(111)
@@ -112,6 +100,7 @@ class UserList extends React.Component {
   
   render() {
     const { userInfo } = this.props;
+    console.log(userInfo,'用户返回的额信息');
     const {isFetching} = this.state;
     const tableHead=['id','头像','名称', '用户类型','门店预约次数', '线上诊疗次数','最近诊疗时间','注册时间', '操作']
     return (

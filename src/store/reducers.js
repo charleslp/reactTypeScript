@@ -2,8 +2,7 @@ import {combineReducers} from 'redux';
 
 const defaultData = {
   loginInfo : {
-    name:'snow',
-    say:'hello world'
+    
   },
   statusCount:1
 }
