@@ -11,9 +11,10 @@ class AddGoods extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      goodsPrice:'',
+      disPrice:'',
       goodsName:'',
-      goodsIndex:'',
+      serial:'',
+      payPrice:'',
       relevanceSymptom:'',
     }
   }
@@ -26,7 +27,9 @@ class AddGoods extends React.Component {
   addGoods=()=>{
     this.props.push('/addGoods')
   }
-  
+  changeSymptom = (value) => {
+    this.setState({relevanceSymptom:value})
+  }
   render() {
     const { userInfo } = this.props;
     
@@ -34,16 +37,18 @@ class AddGoods extends React.Component {
       <div className="add-goods-container">
         <p className="user-info-title" style={{marginBottom:'30px'}}>新增商品</p>
         <span className="recharge-tip-style">排序序号</span>
-        <Input placeholder="请输入商品序号" onChange={this.changeIndec} className="charge-input" />
+        <Input placeholder="请输入商品序号" onChange={(e)=>{this.setState({serial:e.target.value})}} className="charge-input" />
         <span className="recharge-tip-style">商品名称</span>
-        <Input placeholder="请输入商品名称" onChange={this.changePresent} className="charge-input" />
-        <span className="recharge-tip-style">商品价格</span>
-        <Input placeholder="请输入商品价格" onChange={this.changePresent} className="charge-input" />
+        <Input placeholder="请输入商品名称" onChange={(e)=>{this.setState({goodsName:e.target.value})}} className="charge-input" />
+        <span className="recharge-tip-style">划线价格</span>
+        <Input placeholder="请输入商品划线价格" onChange={(e)=>{this.setState({disPrice:e.target.value})}} className="charge-input" />
+        <span className="recharge-tip-style">支付价格</span>
+        <Input placeholder="请输入商品支付价格" onChange={(e)=>{this.setState({payPrice:e.target.value})}} className="charge-input" />
         <span className="recharge-tip-style">关联症状</span>
         <Select
           style={{ width: 300 }}
-          placeholder="请选择用户类型"
-          onChange={this.changeType}          
+          placeholder="请选择症状"
+          onChange={this.changeSymptom}          
         >
           <Option value="jack">Jack</Option>
           <Option value="lucy">Lucy</Option>
