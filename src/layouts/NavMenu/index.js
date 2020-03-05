@@ -69,6 +69,15 @@ const navs = [
               name:'操作日志',
               link:'/operateRecord'
             },
+            {
+              name:'热门搜索设置',
+              link:'/hotsearch'
+            },
+            {
+              name:'新增热门搜索',
+              link:'/addhot'
+            },
+
             
         ]
     }

@@ -251,6 +251,36 @@ const MainRoot = () => (
       }
     />
     <Route
+      path="/hotsearch"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "hotsearch" */ '../containers/product/hotSearchSet/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
+      path="/addhot"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "addhot" */ '../containers/product/addhot/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
       path="/home"
       exact
       render={routeProps =>
