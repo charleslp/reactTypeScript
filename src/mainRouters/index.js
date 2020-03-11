@@ -281,6 +281,21 @@ const MainRoot = () => (
       }
     />
     <Route
+      path="/orderlist"
+      exact
+      render={routeProps =>
+        createElement(
+          Loadable({
+            loader: () => import(/* webpackChunkName: "orderlist" */ '../containers/orderManage/orderList/index'),
+            loading() {
+              return <div />;
+            },
+          }),
+          { ...routeProps },
+        )
+      }
+    />
+    <Route
       path="/home"
       exact
       render={routeProps =>

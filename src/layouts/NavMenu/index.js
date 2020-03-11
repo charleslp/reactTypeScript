@@ -77,6 +77,10 @@ const navs = [
               name:'新增热门搜索',
               link:'/addhot'
             },
+            {
+              name:'订单列表',
+              link:'/orderlist'
+            },
 
             
         ]

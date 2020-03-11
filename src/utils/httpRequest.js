@@ -20,7 +20,7 @@ import { isPlainObject } from "lodash/lang";
 
 
 const instance = axios.create({
-  baseURL: 'https://zy-api.gymooit.cn/v1/cms/',
+  baseURL: '',
   timeout: 15000,
   withCredentials: false,
   headers: {
